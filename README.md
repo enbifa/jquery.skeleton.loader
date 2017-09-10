@@ -83,7 +83,7 @@ var instance = $('#myDIV').scheletrone({
 });
 ```
 
-It is possible to instantiate several times the plugin:
+It is possible to instantiate several times the plugin [DEMO](https://rawgit.com/enbifa/jquery.skeleton.loader/master/example/index.html):
 
 ```html
 
