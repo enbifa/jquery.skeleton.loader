@@ -51,7 +51,7 @@ var instance = $('#myDIV').scheletrone();
 
 Lo scheletrone is ready to make for you the ajax call and replace the template: 
 
-```html
+```javascript
 var instance = $('#myDIV').scheletrone({
   url   : "path/to/url.html",
   data  : { idp: 1, id: 2 }   //if you have to pass data on querystring, otherwise omit it
@@ -75,7 +75,7 @@ To do this, however, you must enter the data-attributes on the div that you want
 ```
 and you have to set the options ``` incache: true ```:
 
-```html
+```javascript
 var instance = $('#myDIV').scheletrone({
   url   : "path/to/url.html",
   data  : { idp: 1, id: 2 }   //if you have to pass data on querystring, otherwise omit it
@@ -110,7 +110,9 @@ It is possible to instantiate several times the plugin:
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
         </div>
 </div>
+```
 
+```javascript
 var instance = $('#myDIV').scheletrone({
   url   : "path/to/url.html",
   incache: false
@@ -120,5 +122,4 @@ var instancecached = $('#myDIVcached').scheletrone({
   url   : "path/to/url.html",
   incache: true
 });
-
 ```
