@@ -73,12 +73,27 @@ To do this, however, you must enter the data-attributes on the div that you want
         </div>
 </div>
 ```
-and the istance is:
+and you have to set the options ```html incache: true ```is:
 
 ```html
 var instance = $('#myDIV').scheletrone({
   url   : "path/to/url.html",
   data  : { idp: 1, id: 2 }   //if you have to pass data on querystring, otherwise omit it
+  incache: true
 });
 ```
 
+It is possible to instantiate several times the plugin:
+
+var instance = $('#skeletone').scheletrone();
+            var instance = $('#skeletone2').scheletrone({
+                    url   : "index3.html",
+                    debug		: {
+                        latency: 3000
+                    },
+                    incache: false,
+                    onComplete: function() {
+                        console.info('plugin is loaded')
+                        console.info('wait 3 secs for the data');
+                    }
+            });
