@@ -67,13 +67,13 @@ To do this, however, you must enter the data-attributes on the div that you want
           <h2>Title 1</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
         </div>
-        <div class="mySpan2" >
+        <div class="mySpan" >
           <h2>Title 2</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
         </div>
 </div>
 ```
-and you have to set the options ```html incache: true ```is:
+and you have to set the options ``` incache: true ```:
 
 ```html
 var instance = $('#myDIV').scheletrone({
@@ -85,15 +85,40 @@ var instance = $('#myDIV').scheletrone({
 
 It is possible to instantiate several times the plugin:
 
-var instance = $('#skeletone').scheletrone();
-            var instance = $('#skeletone2').scheletrone({
-                    url   : "index3.html",
-                    debug		: {
-                        latency: 3000
-                    },
-                    incache: false,
-                    onComplete: function() {
-                        console.info('plugin is loaded')
-                        console.info('wait 3 secs for the data');
-                    }
-            });
+```html
+
+<div id="myDIV">
+
+            <img class="avatar" src="http://lorempicsum.com/up/255/200/2">
+            <div class="content">
+                <h1 class="firstName">
+                    <span>UP</span>
+                </h1>
+                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consectetur metus in nibh porttitor ultricies. Vestibulum placerat blandit interdum.
+                </div>
+            </div>
+        
+</div>
+
+<div id="myDIVcached">
+        <div class="mySpan" data-scheletrone="true">
+          <h2>Title 1</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        </div>
+        <div class="mySpan" >
+          <h2>Title 2</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        </div>
+</div>
+
+var instance = $('#myDIV').scheletrone({
+  url   : "path/to/url.html",
+  incache: false
+});
+
+var instancecached = $('#myDIVcached').scheletrone({
+  url   : "path/to/url.html",
+  incache: true
+});
+
+```
