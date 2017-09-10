@@ -30,7 +30,7 @@ in Internet Explorer on Windows 7 for instance (because of the wrong MIME type).
 
 ## Usage
 
-<p><a href="skeleton.gif" target="_blank"><img src="skeleton.gif" alt="skeleton gif" style="max-width:100%;"></a></p>
+<p><img src="skeleton.gif" alt="skeleton gif" style="max-width:100%;"></p>
 
 
 ```html
