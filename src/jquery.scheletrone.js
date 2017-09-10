@@ -17,6 +17,7 @@
         // default options, used for instantion, if not explicitly set
         defaults = {
 			url         : '',
+            ajaxData    : {},
             debug        : {
                 log: false,
                 latency: 0
@@ -217,6 +218,7 @@
                             $.ajax({
                                 url: obj.options.url,
                                 dataType: "html",
+                                data: obj.options.ajaxData,
                                 success: function(data) {
                                     //logger(this);
                                     console.log("obj.element " + obj.element);
@@ -235,6 +237,7 @@
                     $.ajax({
                                 url: obj.options.url,
                                 dataType: "html",
+                                data: obj.options.ajaxData,
                                 success: function(data) {
                                     //logger(this);
                                         obj.element.html('').append((data));
