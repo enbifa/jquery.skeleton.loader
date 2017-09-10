@@ -114,8 +114,7 @@ It is possible to instantiate several times the plugin:
 
 ```javascript
 var instance = $('#myDIV').scheletrone({
-  url   : "path/to/url.html",
-  incache: false
+  url   : "path/to/url.html"
 });
 
 var instancecached = $('#myDIVcached').scheletrone({
