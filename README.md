@@ -32,7 +32,19 @@ in Internet Explorer on Windows 7 for instance (because of the wrong MIME type).
 
 <p><img src="skeleton.gif" alt="skeleton gif" style="max-width:100%;"></p>
 
+The easiest way to use the plugin is to create a structure of element like this
+
+```html
+<div id="skeletone">
+        <div class="span4" >
+          <h2>Title 1</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        </div>
+</div>
+```
+
 
 ```html
 var instance = $('#myDIV').scheletrone();
 ```
+
