@@ -1,4 +1,4 @@
-# Lo Scheletrone -  jquery.skeleton.loader
+# jquery.skeleton.loader
 
 > A jQuery plugin to make screen skeleton loader.
 
@@ -14,8 +14,8 @@ IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 Two quick start options are available:
 
-* [Download latest release](https://github.com/Enzuccio/Lo-Scheletrone---jquery.skeleton.loader/releases)
-* Clone the repo: `git@github.com:Enzuccio/Lo-Scheletrone---jquery.skeleton.loader.git`
+* [Download latest release](https://github.com/enbifa/jquery.skeleton.loader/releases)
+* Clone the repo: `git@github.com:jquery.skeleton.loader.git`
 
 ## Installation
 
