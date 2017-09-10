@@ -35,8 +35,8 @@ in Internet Explorer on Windows 7 for instance (because of the wrong MIME type).
 The easiest way to use the plugin is to create a structure of element like this
 
 ```html
-<div id="skeletone">
-        <div class="span4" >
+<div id="myDIV">
+        <div class="mySpan" >
           <h2>Title 1</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
         </div>
@@ -52,7 +52,7 @@ var instance = $('#myDIV').scheletrone();
 Lo scheletrone is ready to make for you the ajax call and replace the template: 
 
 ```html
-var instance = $('#skeletone2').scheletrone({
+var instance = $('#myDIV').scheletrone({
   url   : "path/to/url.html",
   data  : { idp: 1, id: 2 }   //if you have to pass data on querystring, otherwise omit it
 });
