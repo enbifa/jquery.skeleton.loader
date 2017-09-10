@@ -119,6 +119,9 @@
 
       </div>
      <div class="row-fluid" id="skeletone2">
+
+
+
        
       </div>
 
@@ -132,11 +135,26 @@
     <script>
         $(function() {
             var instance = $('#skeletone').scheletrone({
-                    url   : "index2.html"
+                    url   : "index2.html",
+                    debug		: {
+                        latency: 4000
+                    },
+                    incache: false,
+                    onComplete: function() {
+                        console.info('plugin is loaded')
+                        console.info('wait 3 secs for the data');
+                    }
             });
-            var instancecached = $('#skeletone2').scheletrone({
+            var instance = $('#skeletone2').scheletrone({
                     url   : "index3.html",
-                    incache: false
+                    debug		: {
+                        latency: 3000
+                    },
+                    incache: true,
+                    onComplete: function() {
+                        console.info('plugin is loaded')
+                        console.info('wait 3 secs for the data');
+                    }
             });
             
             

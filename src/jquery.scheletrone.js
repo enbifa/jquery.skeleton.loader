@@ -240,6 +240,7 @@
                                 data: obj.options.ajaxData,
                                 success: function(data) {
                                     //logger(this);
+                                    console.log(obj);
                                         obj.element.html('').append((data));
                                 }
                             });
