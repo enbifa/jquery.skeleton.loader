@@ -29,3 +29,16 @@ Include the script (unless you are packaging scripts somehow else):
 in Internet Explorer on Windows 7 for instance (because of the wrong MIME type). Bottom line: GitHub is not a CDN.
 
 ## Usage
+```html
+var instance = $('#skeleton').scheletrone({
+                    url   : "index2.html",
+                    debug		: {
+                        latency: 3000
+                    },
+                    incache: true,
+                    onComplete: function() {
+                        console.info('plugin is loaded')
+                        console.info('3 secs for the data');
+                    }
+            });
+```
