@@ -42,9 +42,22 @@ The easiest way to use the plugin is to create a structure of element like this
         </div>
 </div>
 ```
-
+Lo scheletrone makes the skeleton of all the elements that have no childrens.
+If you want to create a simple skeleton of your DOM elements:
 
 ```html
 var instance = $('#myDIV').scheletrone();
 ```
+
+Lo scheletrone is ready to make for you the ajax call and replace the template: 
+
+```html
+var instance = $('#skeletone2').scheletrone({
+                    url   : "path/to/url.html",
+                    data  : { idp: 1, id: 2 }   //if you have to pass data on querystring
+            });
+```
+
+
+
 
