@@ -29,6 +29,10 @@ Include the script (unless you are packaging scripts somehow else):
 in Internet Explorer on Windows 7 for instance (because of the wrong MIME type). Bottom line: GitHub is not a CDN.
 
 ## Usage
+
+<p><a href="skeleton.gif" target="_blank"><img src="skeleton.gif" alt="skeleton gif" style="max-width:100%;"></a></p>
+
+
 ```html
 var instance = $('#myDIV').scheletrone();
 ```
