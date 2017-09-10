@@ -12,7 +12,7 @@ IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 ## Getting started
 
-Three quick start options are available:
+Two quick start options are available:
 
 * [Download latest release](https://github.com/Enzuccio/Lo-Scheletrone---jquery.skeleton.loader/releases)
 * Clone the repo: `git@github.com:Enzuccio/Lo-Scheletrone---jquery.skeleton.loader.git`
