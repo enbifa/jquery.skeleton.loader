@@ -164,7 +164,15 @@
                    // return;
             }
 
-
+            $( _this ).find('*').each(function( index ) {
+                $( this )
+                .contents()
+                    .filter(function() {
+                    return this.nodeType === 3;
+                    })
+                    .wrap( "<p></p>" )
+                    .end();
+            });
 
              $( _this ).find('*').each(function( index ) {
                     var skeletizza = true;
