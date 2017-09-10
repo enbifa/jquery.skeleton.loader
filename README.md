@@ -22,6 +22,7 @@ Two quick start options are available:
 Include the script (unless you are packaging scripts somehow else):
 
 ```html
+<link href="/path/to/jquery.skeleton.css" rel="stylesheet">
 <script src="/path/to/jquery.scheletrone.js"></script>
 ```
 
