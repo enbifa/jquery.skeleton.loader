@@ -58,6 +58,27 @@ var instance = $('#myDIV').scheletrone({
 });
 ```
 
+Magic happens when you do not have the template on your home page. Lo scheletrone can make the call for you, recover the div and save it to local storage. Subsequently, the template will be retrieved from the local storage and maked like a skeleton before making the ajax call.
+To do this, however, you must enter the data-attributes on the div that you want to save in cache:
 
+```html
+<div id="myDIV">
+        <div class="mySpan" data-scheletrone="true">
+          <h2>Title 1</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        </div>
+        <div class="mySpan2" >
+          <h2>Title 2</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        </div>
+</div>
+```
+and the istance is:
 
+```html
+var instance = $('#myDIV').scheletrone({
+  url   : "path/to/url.html",
+  data  : { idp: 1, id: 2 }   //if you have to pass data on querystring, otherwise omit it
+});
+```
 
