@@ -1,4 +1,4 @@
-# jquery.skeleton.loader
+# jquery.skeleton.loader (lo scheletrone)
 
 > A jQuery plugin to make screen skeleton loader.
 
