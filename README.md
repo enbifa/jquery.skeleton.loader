@@ -1,6 +1,6 @@
 # jquery.skeleton.loader (lo scheletrone)
 
-> A jQuery plugin to make screen skeleton loader.
+> A jQuery plugin to make screen skeleton loader.<br>
 > <b>Attention: skeleton is not a tool to automatically create wireframe ... at least not yet :)
 > It is still in development and is currently valid for simple scenarios.</b>
 
