@@ -165,13 +165,17 @@
             }
 
             $( _this ).find('*').each(function( index ) {
+               // $( this ).contents();
                 $( this )
                 .contents()
                     .filter(function() {
                     return this.nodeType === 3;
                     })
-                    .wrap( "<p></p>" )
-                    .end();
+                    .wrap( "<div></div>" )
+                    .end()
+                   /* .filter( "a" )
+                    .unwrap()
+                    .wrap( "<a></a>" )*/;
             });
 
              $( _this ).find('*').each(function( index ) {
