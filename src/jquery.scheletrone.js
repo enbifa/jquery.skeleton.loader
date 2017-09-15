@@ -15,7 +15,7 @@
         dataPlugin = 'plugin_' + Name,
 
         // default options, used for instantion, if not explicitly set
-        defaults = {
+             = {
 			url         : '',
             ajaxData    : {},
             debug        : {
@@ -53,7 +53,7 @@
                     latency: 3000
                 },
                 incache: false,
-                onComplete	: function() { console.log('plugin complete!'); }
+                onComplete	: function() { _logger('plugin complete!'); }
            });
 
      */
@@ -93,22 +93,23 @@
      *  @param   {Object}  objToSkeletrize  the element
      */
     var _makeitSkeleton = function (objToSkeletrize) {
-            
-          //  $( obj ).attr('class', '');
-          // $( obj ).attr('style', '');
-          //  $( obj ).addClass("reset-this ");
-        /*  if(livclass == 2)
-          {
-            $( obj ).addClass("pending-elimg ");
-          }
-          else
-          {*/
-            //  console.log("objToSkeletrize -->>" +  objToSkeletrize);
-            //   console.log(objToSkeletrize);
+
                 objToSkeletrize.addClass("pending_el ");
-         // }
-            
+
     }
+    /**
+     *  Make a text log 
+     *
+     *  @param   {string}  message text to log
+     */
+    var _logger = function (message) {
+             
+             //if (this.options.debug.log)
+             // console.log(message);
+    }
+
+
+
     /**
      *  Delete node without data attribute
      *
@@ -118,13 +119,13 @@
 
     var _retrieveOnlyToCache = function(data)
     {
-        console.log("_retrieveOnlyToCache");
-        console.log(data);
+        _logger("_retrieveOnlyToCache");
+        _logger(data);
         var div = document.createElement('div');
         div.innerHTML = data;
         $( div ).children().each(function( index ) {
-             console.log('a');
-             console.log($(this).data("scheletrone") );
+             _logger('a');
+             _logger($(this).data("scheletrone") );
             if ( $(this).data("scheletrone") ) 
             {
 
@@ -134,7 +135,7 @@
                  $( this ).remove();
             }
          });
-         console.log(div.innerHTML);
+         _logger(div.innerHTML);
          return div.innerHTML;
     }
 
@@ -152,12 +153,12 @@
          */
         init: function () {
             var _this = this.element;
-            console.log(this);
+            _logger(this);
             // iterate all children in element to make a skeleton
             
             if (this.options.incache)
             {
-                console.log(this.getCache());
+                _logger(this.getCache());
                    // this.element.innerHTML(this.getCache());
                    // var div = document.createElement('div');
                     this.element.innerHTML = this.getCache();
@@ -166,11 +167,15 @@
 
             $( _this ).find('*').each(function( index ) {
                // $( this ).contents();
+               
+
                 $( this )
                 .contents()
                     .filter(function() {
-                    return this.nodeType === 3;
+                        
+                        return this.nodeType === 3;
                     })
+                    
                     .wrap( "<div></div>" )
                     .end()
                    /* .filter( "a" )
@@ -181,7 +186,7 @@
              $( _this ).find('*').each(function( index ) {
                     var skeletizza = true;
                     //search for children
-                    console.log(skeletizza);
+                    _logger(skeletizza);
                     if($( this ).children().length == 0)
                     {
                                 if($( this ).is("BR"))
@@ -191,7 +196,7 @@
 
                                 if($( this ).is("IMG"))
                                 {
-                                    console.log("IMG");
+                                    _logger("IMG");
                                     var width = $( this ).clientWidth;
                                     var height = $( this ).clientHeight;
 
@@ -202,7 +207,7 @@
 
                                 if (skeletizza)
                                 {
-                                    console.log("_makeitSkeleton -->>" +  this);
+                                    _logger("_makeitSkeleton -->>" +  this);
                                     _makeitSkeleton($( this ));
                                 
                                 }
@@ -211,7 +216,7 @@
 
             if (this.options.url != '')
             {
-                console.log('prova');
+                _logger('prova');
                 this.retrieveData();
             }
             // trigger onComplete callback
@@ -233,11 +238,11 @@
                                 data: obj.options.ajaxData,
                                 success: function(data) {
                                     //logger(this);
-                                    console.log("obj.element " + obj.element);
+                                    _logger("obj.element " + obj.element);
                                         $( obj.element ).html('').append((data));
                                         if (obj.options.incache)
                                         {
-                                            console.log('setcache');
+                                            _logger('setcache');
                                             var cacheData = _retrieveOnlyToCache(data);
                                             obj.setCache(cacheData);
                                         }
@@ -252,7 +257,7 @@
                                 data: obj.options.ajaxData,
                                 success: function(data) {
                                     //logger(this);
-                                    console.log(obj);
+                                    _logger(obj);
                                         obj.element.html('').append((data));
                                 }
                             });
@@ -266,7 +271,7 @@
          */
         setCache : function ( result_data ) {
             // Cache data
-            //console.log(result_data);
+            //_logger(result_data);
             if ( window.localStorage ) {
                 window.localStorage.setItem( "div-skeleton:" ,  result_data  );
             }
