@@ -153,6 +153,7 @@
          */
         init: function () {
             var _this = this.element;
+
             _logger(this.options.debug.log,this);
             // iterate all children in element to make a skeleton
             
@@ -186,7 +187,7 @@
              $( _this ).find('*').each(function( index ) {
                     var skeletizza = true;
                     //search for children
-                    _logger(this.options.debug.log,skeletizza);
+                   
                     if($( this ).children().length == 0)
                     {
                                 if($( this ).is("BR"))
@@ -196,7 +197,7 @@
 
                                 if($( this ).is("IMG"))
                                 {
-                                    _logger(this.options.debug.log,"IMG");
+                                   
                                     var width = $( this ).clientWidth;
                                     var height = $( this ).clientHeight;
 
@@ -207,7 +208,7 @@
 
                                 if (skeletizza)
                                 {
-                                    _logger(this.options.debug.log,"_makeitSkeleton -->>" +  this);
+                                    
                                     _makeitSkeleton($( this ));
                                 
                                 }
