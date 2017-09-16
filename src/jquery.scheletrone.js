@@ -14,7 +14,7 @@
         
         dataPlugin = 'plugin_' + Name,
 
-        // default options, used for instantion, if not explicitly set
+            // default options, used for instantion, if not explicitly set
             defaults = {
 			url         : '',
             ajaxData    : {},
@@ -24,7 +24,7 @@
             },
             incache : false,
             onComplete     : function() {
-                console.info('default onComplete() event');
+                _logger('default onComplete() event');
             }
 		};
 
@@ -43,10 +43,10 @@
      *  @param   {Function}      [options.onComplete]      - the event is triggered after plugin is complete
      *
      *  @example 
-        // minimal setup
+     // minimal setup
         var instance = $('#element').square();
 
-        // customized setup
+     // customized setup
         var instance = $('#skeleton').skeleton({
                 url   : "index2.html",
                 debug		: {
@@ -160,14 +160,13 @@
             if (this.options.incache)
             {
                 _logger(this.options.debug.log,this.getCache());
-                   // this.element.innerHTML(this.getCache());
-                   // var div = document.createElement('div');
+                 
                     this.element.innerHTML = this.getCache();
-                   // return;
+                   
             }
 
             $( _this ).find('*').each(function( index ) {
-               // $( this ).contents();
+              
                
 
                 $( this )
@@ -176,12 +175,9 @@
                         
                         return this.nodeType === 3;
                     })
-                    
                     .wrap( "<div></div>" )
                     .end()
-                   /* .filter( "a" )
-                    .unwrap()
-                    .wrap( "<a></a>" )*/;
+                   
             });
 
              $( _this ).find('*').each(function( index ) {
@@ -227,18 +223,18 @@
         retrieveData: function () {
         var obj = this;
         
-        //     this.logger(this.options.url);
+       
             if (this.options.debug.latency > 0)
             {
-                //obj.logger(this.options.debug.latency > 0);
+              
                 setTimeout(function(){
-                  //  obj.logger(obj.options.url);
+                 
                             $.ajax({
                                 url: obj.options.url,
                                 dataType: "html",
                                 data: obj.options.ajaxData,
                                 success: function(data) {
-                                    //logger(this);
+                                    
                                     _logger(this.options.debug.log,"obj.element " + obj.element);
                                         $( obj.element ).html('').append((data));
                                         if (obj.options.incache)
@@ -257,7 +253,7 @@
                                 dataType: "html",
                                 data: obj.options.ajaxData,
                                 success: function(data) {
-                                    //logger(this);
+                                  
                                     _logger(this.options.debug.log,obj);
                                         obj.element.html('').append((data));
                                 }
@@ -272,7 +268,7 @@
          */
         setCache : function ( result_data ) {
             // Cache data
-            //_logger(this.options.debug.log,result_data);
+           
             if ( window.localStorage ) {
                 window.localStorage.setItem( "div-skeleton:" ,  result_data  );
             }
