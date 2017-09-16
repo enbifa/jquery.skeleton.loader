@@ -15,7 +15,7 @@
         dataPlugin = 'plugin_' + Name,
 
         // default options, used for instantion, if not explicitly set
-             = {
+            defaults = {
 			url         : '',
             ajaxData    : {},
             debug        : {
@@ -53,7 +53,7 @@
                     latency: 3000
                 },
                 incache: false,
-                onComplete	: function() { _logger('plugin complete!'); }
+                onComplete	: function() { _logger(this.options.debug.log,'plugin complete!'); }
            });
 
      */
@@ -102,10 +102,10 @@
      *
      *  @param   {string}  message text to log
      */
-    var _logger = function (message) {
+    var _logger = function (tolog,message) {
              
-             //if (this.options.debug.log)
-             // console.log(message);
+             if (tolog)
+              console.log(message);
     }
 
 
@@ -119,13 +119,13 @@
 
     var _retrieveOnlyToCache = function(data)
     {
-        _logger("_retrieveOnlyToCache");
-        _logger(data);
+        _logger(this.options.debug.log,"_retrieveOnlyToCache");
+        _logger(this.options.debug.log,data);
         var div = document.createElement('div');
         div.innerHTML = data;
         $( div ).children().each(function( index ) {
-             _logger('a');
-             _logger($(this).data("scheletrone") );
+             _logger(this.options.debug.log,'a');
+             _logger(this.options.debug.log,$(this).data("scheletrone") );
             if ( $(this).data("scheletrone") ) 
             {
 
@@ -135,7 +135,7 @@
                  $( this ).remove();
             }
          });
-         _logger(div.innerHTML);
+         _logger(this.options.debug.log,div.innerHTML);
          return div.innerHTML;
     }
 
@@ -153,12 +153,12 @@
          */
         init: function () {
             var _this = this.element;
-            _logger(this);
+            _logger(this.options.debug.log,this);
             // iterate all children in element to make a skeleton
             
             if (this.options.incache)
             {
-                _logger(this.getCache());
+                _logger(this.options.debug.log,this.getCache());
                    // this.element.innerHTML(this.getCache());
                    // var div = document.createElement('div');
                     this.element.innerHTML = this.getCache();
@@ -186,7 +186,7 @@
              $( _this ).find('*').each(function( index ) {
                     var skeletizza = true;
                     //search for children
-                    _logger(skeletizza);
+                    _logger(this.options.debug.log,skeletizza);
                     if($( this ).children().length == 0)
                     {
                                 if($( this ).is("BR"))
@@ -196,7 +196,7 @@
 
                                 if($( this ).is("IMG"))
                                 {
-                                    _logger("IMG");
+                                    _logger(this.options.debug.log,"IMG");
                                     var width = $( this ).clientWidth;
                                     var height = $( this ).clientHeight;
 
@@ -207,7 +207,7 @@
 
                                 if (skeletizza)
                                 {
-                                    _logger("_makeitSkeleton -->>" +  this);
+                                    _logger(this.options.debug.log,"_makeitSkeleton -->>" +  this);
                                     _makeitSkeleton($( this ));
                                 
                                 }
@@ -216,7 +216,7 @@
 
             if (this.options.url != '')
             {
-                _logger('prova');
+                _logger(this.options.debug.log,'prova');
                 this.retrieveData();
             }
             // trigger onComplete callback
@@ -238,11 +238,11 @@
                                 data: obj.options.ajaxData,
                                 success: function(data) {
                                     //logger(this);
-                                    _logger("obj.element " + obj.element);
+                                    _logger(this.options.debug.log,"obj.element " + obj.element);
                                         $( obj.element ).html('').append((data));
                                         if (obj.options.incache)
                                         {
-                                            _logger('setcache');
+                                            _logger(this.options.debug.log,'setcache');
                                             var cacheData = _retrieveOnlyToCache(data);
                                             obj.setCache(cacheData);
                                         }
@@ -257,7 +257,7 @@
                                 data: obj.options.ajaxData,
                                 success: function(data) {
                                     //logger(this);
-                                    _logger(obj);
+                                    _logger(this.options.debug.log,obj);
                                         obj.element.html('').append((data));
                                 }
                             });
@@ -271,7 +271,7 @@
          */
         setCache : function ( result_data ) {
             // Cache data
-            //_logger(result_data);
+            //_logger(this.options.debug.log,result_data);
             if ( window.localStorage ) {
                 window.localStorage.setItem( "div-skeleton:" ,  result_data  );
             }
