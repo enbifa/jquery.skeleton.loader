@@ -14,7 +14,7 @@ IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 ## Getting started
 
-See jquery.skeleton.loader plufin in action <b>[DEMO]</b>(https://rawgit.com/enbifa/jquery.skeleton.loader/master/example/index.html):
+See jquery.skeleton.loader plugin in action [DEMO](https://rawgit.com/enbifa/jquery.skeleton.loader/master/example/index.html):
 
 Two quick start options are available:
 
