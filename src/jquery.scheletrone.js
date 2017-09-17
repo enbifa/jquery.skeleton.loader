@@ -9,7 +9,7 @@
 
 ;(function ( $, window, document ) {
 'use strict';
-
+    var debugLog = false;
     var Name = 'scheletrone',
         
         dataPlugin = 'plugin_' + Name,
@@ -22,6 +22,9 @@
                 log: false,
                 latency: 0
             },
+            removeIframe: false,
+            backgroundImage: true,
+            replaceImageWith: '',
             incache : false,
             onComplete     : function() {
                 _logger('default onComplete() event');
@@ -53,7 +56,7 @@
                     latency: 3000
                 },
                 incache: false,
-                onComplete	: function() { _logger(this.options.debug.log,'plugin complete!'); }
+                onComplete	: function() { _logger('plugin complete!'); }
            });
 
      */
@@ -72,6 +75,7 @@
         // override default options
         // create a new object, with all default settings, overridden only by the init options
         this.options = $.extend( {}, defaults, options );
+        debugLog = this.options.debug.log;
 
         //element to skeletrize
         this.element    = element;
@@ -102,10 +106,59 @@
      *
      *  @param   {string}  message text to log
      */
-    var _logger = function (tolog,message) {
+    var _logger = function (message) {
              
-             if (tolog)
-              console.log(message);
+             if (debugLog)
+               console.log(message);
+    }
+
+
+    var _replaceBackgroundImage = function (replaceImageWith,element)
+    {
+        
+        var bgimage_url = $( element ).css('background-image');
+        
+        // ^ Either "none" or url("...urlhere..")
+        bgimage_url = /^url\((['"]?)(.*)\1\)$/.exec(bgimage_url);
+        bgimage_url = bgimage_url ? bgimage_url[2] : ""; // If matched, retrieve url, otherwise ""
+        
+        var bg_url = $( element ).css('background');
+      
+        // ^ Either "none" or url("...urlhere..")
+        bg_url = /^url\((['"]?)(.*)\1\)$/.exec(bg_url);
+        bg_url = bg_url ? bg_url[2] : ""; // If matched, retrieve url, otherwise ""
+            
+
+        console.log(this);
+        if ((bgimage_url != '') || (bg_url != '') ) {
+          
+            $( element ).replaceWith("<div class='pending_el "+replaceImageWith+"' style='width:"+$( element ).width()+"px;height:"+$( element ).height()+"px;'></div>")
+        
+        }
+    }
+
+    var _getAllStyles = function (elem) {
+        if (!elem) return []; // Element does not exist, empty list.
+        var win = document.defaultView || window, style, styleNode = [];
+        if (win.getComputedStyle) { /* Modern browsers */
+            
+            style = win.getComputedStyle(elem, '');
+            for (var i=0; i<style.length; i++) {
+                styleNode.push( style[i] + ':' + style.getPropertyValue(style[i]) );
+                //               ^name ^           ^ value ^
+            }
+        } else if (elem.currentStyle) { /* IE */
+            style = elem.currentStyle;
+            for (var name in style) {
+                styleNode.push( name + ':' + style[name] );
+            }
+        } else { /* Ancient browser..*/
+            style = elem.style;
+            for (var i=0; i<style.length; i++) {
+                styleNode.push( style[i] + ':' + style[style[i]] );
+            }
+        }
+        return styleNode;
     }
 
 
@@ -119,13 +172,13 @@
 
     var _retrieveOnlyToCache = function(data)
     {
-        _logger(this.options.debug.log,"_retrieveOnlyToCache");
-        _logger(this.options.debug.log,data);
+        _logger("_retrieveOnlyToCache");
+        _logger(data);
         var div = document.createElement('div');
         div.innerHTML = data;
         $( div ).children().each(function( index ) {
-             _logger(this.options.debug.log,'a');
-             _logger(this.options.debug.log,$(this).data("scheletrone") );
+             _logger('a');
+             _logger($(this).data("scheletrone") );
             if ( $(this).data("scheletrone") ) 
             {
 
@@ -135,7 +188,7 @@
                  $( this ).remove();
             }
          });
-         _logger(this.options.debug.log,div.innerHTML);
+         _logger(div.innerHTML);
          return div.innerHTML;
     }
 
@@ -152,18 +205,25 @@
          *  @private
          */
         init: function () {
-            var _this = this.element;
+            var _this  = this.element;
+            var __this = this;
 
-            _logger(this.options.debug.log,this);
+            _logger(this);
             // iterate all children in element to make a skeleton
             
+            if(this.options.removeIframe)
+                jQuery('html').find('iframe').remove();
+
+
             if (this.options.incache)
             {
-                _logger(this.options.debug.log,this.getCache());
+                _logger(this.getCache());
                  
                     this.element.innerHTML = this.getCache();
                    
             }
+
+            
 
             $( _this ).find('*').each(function( index ) {
               
@@ -175,7 +235,22 @@
                         
                         return this.nodeType === 3;
                     })
-                    .wrap( "<div></div>" )
+                    .each(function(  ) {
+                        
+                        if(this.nodeValue.trim() != '')
+                        {
+                            _logger(this,"-- " + this.nodeValue.trim() + '--');
+                            var color = $( this ).parent().css( {"background-color" : "#ccc"} );
+                            _logger(this,color);
+                            return this
+                        }
+                        else
+                        {
+                            this.remove();
+                        }
+                            
+                    })
+                    .wrap( "<div class='nodeType3' ></div>" )
                     .end()
                    
             });
@@ -183,9 +258,17 @@
              $( _this ).find('*').each(function( index ) {
                     var skeletizza = true;
                     //search for children
-                   
+ 
+                    if (!__this.options.backgroundImage)
+                         _replaceBackgroundImage(__this.options.replaceImageWith,this);
+
+                    $( this ).css('color', '#ccc');
+
+                    
+                    
                     if($( this ).children().length == 0)
                     {
+                                
                                 if($( this ).is("BR"))
                                 {
                                     skeletizza = false;
@@ -194,11 +277,14 @@
                                 if($( this ).is("IMG"))
                                 {
                                    
-                                    var width = $( this ).clientWidth;
-                                    var height = $( this ).clientHeight;
-
-                                    $( this ).replaceWith("<div class='pending-el' style='width:"+this.width+"px;height:"+this.height+"px;'></div>")
-                                
+                                    var width = this.width;
+                                    var height = this.height;
+                                    var tempThis = this;
+                                    var replaced = "<div class='pending_el " + __this.options.replaceImageWith + " ' style='width:"+width+"px;height:"+height+"px;)'></div>"
+                                    $( this ).replaceWith(replaced);
+                          
+                                   
+                                 
                                     skeletizza = false;
                                 }
 
@@ -211,9 +297,15 @@
                     }
              });
 
+            
+            
+     
+
+
+
             if (this.options.url != '')
             {
-                _logger(this.options.debug.log,'prova');
+                _logger('prova');
                 this.retrieveData();
             }
             // trigger onComplete callback
@@ -235,11 +327,11 @@
                                 data: obj.options.ajaxData,
                                 success: function(data) {
                                     
-                                    _logger(this.options.debug.log,"obj.element " + obj.element);
+                                    _logger(obj.options.debug.log,"obj.element " + obj.element);
                                         $( obj.element ).html('').append((data));
                                         if (obj.options.incache)
                                         {
-                                            _logger(this.options.debug.log,'setcache');
+                                            _logger(obj.options.debug.log,'setcache');
                                             var cacheData = _retrieveOnlyToCache(data);
                                             obj.setCache(cacheData);
                                         }
@@ -254,7 +346,7 @@
                                 data: obj.options.ajaxData,
                                 success: function(data) {
                                   
-                                    _logger(this.options.debug.log,obj);
+                                    _logger(obj.options.debug.log,obj);
                                         obj.element.html('').append((data));
                                 }
                             });
