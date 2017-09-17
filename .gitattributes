@@ -1,2 +1,103 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Project
+
+*       text eol=lf
+
+
+
+# Language Diffs
+
+*.css   diff=css
+*.html  diff=html
+Gemfile diff=ruby
+
+
+
+# Windows
+
+*.bat   eol=crlf
+*.cmd   eol=crlf
+
+
+
+# Documents
+
+*.doc   binary diff=exif
+*.docx  binary diff=docx
+*.dot   binary diff=exif
+*.dotx  binary diff=exif
+*.xls   binary diff=exif
+*.xlsx  binary diff=exif
+*.xlt   binary diff=exif
+*.xltm  binary diff=exif
+*.odb   binary diff=exif
+*.odf   binary diff=exif
+*.odg   binary diff=exif
+*.odi   binary diff=exif
+*.odp   binary diff=exif
+*.ods   binary diff=exif
+*.odt   binary diff=odt
+*.otc   binary diff=exif
+*.otg   binary diff=exif
+*.oti   binary diff=exif
+*.otp   binary diff=exif
+*.ots   binary diff=exif
+*.ott   binary diff=exif
+*.pdf   binary diff=exif
+*.ppt   binary diff=exif
+*.pptx  binary diff=exif
+*.ps    binary diff=exif
+
+
+
+# Fonts
+
+*.eot   binary
+*.otf   binary diff=exif
+*.ttc   binary diff=exif
+*.ttf   binary diff=exif
+*.woff  binary
+*.woff2 binary
+
+
+
+# Audio Visual
+
+*.fla   binary diff=exif
+*.flv   binary diff=exif
+*.mov   binary diff=exif
+*.mp3   binary diff=exif
+*.mp4   binary diff=exif
+*.swf   binary diff=exif
+
+
+
+# Images
+
+*.ai    binary diff=exif
+*.bmp   binary diff=exif
+*.gif   binary diff=exif
+*.hqx   binary
+*.icns  binary
+*.ico   binary
+*.jpeg  binary diff=exif
+*.jpg   binary diff=exif
+*.png   binary diff=exif
+*.psd   binary diff=exif
+*.svg   text
+*.tif   binary diff=exif
+*.tiff  binary diff=exif
+
+
+
+# Archives
+
+*.7z    binary
+*.cab   binary
+*.ear   binary
+*.gz    binary diff=exif
+*.jar   binary
+*.rar   binary diff=exif
+*.tar   binary
+*.tgz   binary
+*.war   binary
+*.zip   binary diff=exif
