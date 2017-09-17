@@ -14,6 +14,8 @@ IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 ## Getting started
 
+See jquery.skeleton.loader plufin in action <b>[DEMO]</b>(https://rawgit.com/enbifa/jquery.skeleton.loader/master/example/index.html):
+
 Two quick start options are available:
 
 * [Download latest release](https://github.com/enbifa/jquery.skeleton.loader/releases)
