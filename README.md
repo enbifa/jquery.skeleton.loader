@@ -207,6 +207,40 @@ var instance = $('#myDIV').scheletrone({
                 _logger('default onComplete() event');
             }
 });
-
-
 ```
+
+## When using lo scheletrone
+
+There are several cases where it is useful to use this plugin. The first is when you have a div populated asynchronous and the data waiting is very slow. The effect you have is an empty block awaiting the data like this. 
+
+<p><img src="withoutdata.gif" alt="skeleton gif" style="max-width:100%;"></p>
+
+
+in this case you can use this code:
+
+```javascript
+var instance = $('#myDIV').scheletrone({
+                    incache: true,
+                    onComplete: function() {
+                        //here you can  inser the code to populate the div
+                        
+                    }
+            });
+```
+
+The important thing to do is to include an attribute "data-scheletrone" on the items to be cached like this:
+
+```html
+<div class="container2" **data-scheletrone="true"**>
+    <img class="avatar" src="http://lorempicsum.com/up/255/200/2">
+    <div class="content">
+        <h1 class="firstName">
+            <span>Up</span>
+        </h1>
+        <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consectetur metus in nibh porttitor ultricies. Vestibulum placerat blandit interdum.
+        </div>
+    </div>
+</div>
+```
+
+or if you want to 
