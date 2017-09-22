@@ -231,7 +231,7 @@ var instance = $('#myDIV').scheletrone({
 The important thing to do is to include an attribute "data-scheletrone" on the items to be cached like this:
 
 ```html
-<div class="container2" **data-scheletrone="true"**>
+<div class="container2" data-scheletrone="true">
     <img class="avatar" src="http://lorempicsum.com/up/255/200/2">
     <div class="content">
         <h1 class="firstName">
