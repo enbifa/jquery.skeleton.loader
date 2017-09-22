@@ -127,6 +127,7 @@ var instancecached = $('#myDIVcached').scheletrone({
   incache: true
 });
 ```
+## Options
 
 Currently this plugin supports the following options:
 
@@ -186,3 +187,26 @@ Currently this plugin supports the following options:
   - Default: null
   - Acceptable-Values: Javascript Function
   - Function: If you want a callback when the skeleton is complete
+
+
+Example with options:
+
+```javascript
+var instance = $('#myDIV').scheletrone({
+            url         : 'http://url/to/file',
+            ajaxData    : {},
+            debug        : {
+                log: false,
+                latency: 2000
+            },
+            removeIframe: true,
+            backgroundImage: true,
+            replaceImageWith: 'bg-image',
+            incache : false,
+            onComplete     : function() {
+                _logger('default onComplete() event');
+            }
+});
+
+
+```
