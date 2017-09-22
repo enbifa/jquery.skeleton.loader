@@ -127,3 +127,62 @@ var instancecached = $('#myDIVcached').scheletrone({
   incache: true
 });
 ```
+
+Currently this plugin supports the following options:
+
+#### url
+
+ - Default: ``  
+ - Acceptable-Values: String  
+ - Function: The website address of the site that the plugin will call asynchronously
+
+ #### ajaxData
+
+ - Default: {}  
+ - Acceptable-Values: Json Object  
+ - Function: Data to send to the ajax call
+
+  #### debug.log
+
+ - Default: false 
+ - Acceptable-Values: Boolean
+ - Function: If you want to debug the plugin
+
+  #### debug.latency
+
+ - Default: 0 
+ - Acceptable-Values: Integer
+ - Function: The timeout that the plugin will have before injecting the data returned from the ajax call (in milliseconds)
+
+
+  #### removeIframe
+
+ - Default: false 
+ - Acceptable-Values: Boolean
+ - Function: Exclude the iframes of the page to be scanned (to avoid security issues)
+
+
+
+  #### backgroundImage
+
+ - Default: true 
+ - Acceptable-Values: Boolean
+ - Function: To make a skeleton also the elements that contain background images
+
+  #### replaceImageWith
+
+  - Default: '' 
+  - Acceptable-Values: String
+  - Function: To apply a css class to the images maked skeleton, typically to apply a placeholder. In the attached css file a class, named ".bg-image" is already available where you can add the placeholder in a base64 format
+
+  #### incache
+
+  - Default: false
+  - Acceptable-Values: Boolean
+  - Function: To cache the received asynchronous data
+
+  #### onComplete
+
+  - Default: null
+  - Acceptable-Values: Javascript Function
+  - Function: If you want a callback when the skeleton is complete
