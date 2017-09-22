@@ -59,7 +59,7 @@ Lo scheletrone is ready to make for you the ajax call and replace the template:
 ```javascript
 var instance = $('#myDIV').scheletrone({
   url   : "path/to/url.html",
-  data  : { idp: 1, id: 2 }   //if you have to pass data on querystring, otherwise omit it
+  ajaxData  : { idp: 1, id: 2 }   //if you have to pass data on querystring, otherwise omit it
 });
 ```
 
