@@ -243,4 +243,3 @@ The important thing to do is to include an attribute "data-scheletrone" on the i
 </div>
 ```
 
-or if you want to 
