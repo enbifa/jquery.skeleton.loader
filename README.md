@@ -1,8 +1,7 @@
 # jquery.skeleton.loader (lo scheletrone)
 
 > A jQuery plugin to make screen skeleton loader.<br>
-> <b>Attention: skeleton is not a tool to automatically create wireframe ... at least not yet :)
-> It is still in development and is currently valid for simple scenarios.</b>
+> <b>Attention: skeleton is not a tool to automatically create wireframe ... at least not yet :)</b>
 
 ## Browser Support
 
@@ -188,6 +187,12 @@ Currently this plugin supports the following options:
   - Acceptable-Values: Javascript Function
   - Function: If you want a callback when the skeleton is complete
 
+  #### maskText
+
+  - Default: true 
+  - Acceptable-Values: Boolean
+  - Function: If you need to mask an element's text, especially when incache is true
+
 
 Example with options:
 
@@ -200,6 +205,7 @@ var instance = $('#myDIV').scheletrone({
                 latency: 2000
             },
             removeIframe: true,
+            maskText: true,
             backgroundImage: true,
             replaceImageWith: 'bg-image',
             incache : false,
@@ -222,7 +228,7 @@ in this case you can use this code:
 var instance = $('#myDIV').scheletrone({
                     incache: true,
                     onComplete: function() {
-                        //here you can  inser the code to populate the div
+                        //here you can insert the code to populate the div
                         
                     }
             });
