@@ -10,7 +10,7 @@
 ;(function ( $, window, document ) {
 'use strict';
     var debugLog = false;
-    var Name = 'scheletrone',
+    var Name = 'scheletrone';
     var ReplaceText;
     var Words = [
         "lorem", "ipsum", "dolor", "sit", "amet,", "consectetur", "adipiscing", "elit", "ut", "aliquam,", "purus", "sit", "amet", "luctus", "venenatis,", "lectus", "magna", "fringilla", "urna,", "porttitor", "rhoncus", "dolor", "purus", "non", "enim", "praesent", "elementum", "facilisis", "leo,", "vel", "fringilla", "est", "ullamcorper", "eget", "nulla", "facilisi", "etiam", "dignissim", "diam", "quis", "enim", "lobortis", "scelerisque", "fermentum", "dui", "faucibus", "in", "ornare", "quam", "viverra", "orci", "sagittis", "eu", "volutpat", "odio", "facilisis", "mauris", "sit", "amet", "massa", "vitae", "tortor", "condimentum", "lacinia", "quis", "vel", "eros", "donec", "ac", "odio", "tempor", "orci", "dapibus", "ultrices", "in", "iaculis", "nunc", "sed", "augue", "lacus,", "viverra", "vitae", "congue", "eu,", "consequat", "ac", "felis", "donec", "et", "odio", "pellentesque", "diam", "volutpat", "commodo", "sed", "egestas", "egestas", "fringilla", "phasellus", "faucibus", "scelerisque", "eleifend", "donec", "pretium", "vulputate", "sapien", "nec", "sagittis", "aliquam", "malesuada", "bibendum", "arcu", "vitae", "elementum",
@@ -25,7 +25,7 @@
         "nullam", "vehicula", "ipsum", "a", "arcu", "cursus", "vitae", "congue", "mauris", "rhoncus", "aenean", "vel", "elit", "scelerisque", "mauris", "pellentesque", "pulvinar", "pellentesque", "habitant", "morbi", "tristique", "senectus", "et", "netus", "et", "malesuada", "fames", "ac", "turpis", "egestas", "maecenas", "pharetra", "convallis", "posuere", "morbi", "leo", "urna,", "molestie", "at", "elementum", "eu,", "facilisis", "sed", "odio", "morbi", "quis", "commodo", "odio", "aenean", "sed", "adipiscing", "diam", "donec", "adipiscing", "tristique", "risus", "nec", "feugiat", "in", "fermentum", "posuere", "urna", "nec", "tincidunt", "praesent", "semper", "feugiat", "nibh", "sed", "pulvinar", "proin", "gravida", "hendrerit", "lectus", "a", "molestie"
     ];
         
-        dataPlugin = 'plugin_' + Name,
+    var  dataPlugin = 'plugin_' + Name,
 
             // default options, used for instantion, if not explicitly set
             defaults = {
@@ -35,6 +35,7 @@
                 log: false,
                 latency: 0
             },
+            maskText: false,
             removeIframe: false,
             backgroundImage: true,
             replaceImageWith: '',
@@ -122,9 +123,10 @@
     var _logger = function (message) {
              
              if (debugLog)
+             {
                console.log(message);
+             }
     }
-
 
     var _replaceBackgroundImage = function (replaceImageWith,element)
     {
@@ -201,7 +203,8 @@
                  $( this ).remove();
             }
          });
-         _logger(div.innerHTML);
+        
+         console.log(div.innerHTML);
          return div.innerHTML;
     }
 
@@ -214,7 +217,7 @@
      */
     var _randomInt = function (min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
+    }
 
     /**
      *  Count number of words in a text
@@ -239,13 +242,25 @@
      *  @return  {string}
      */
     //text creator method with parameters: how many, what
-    var _createText = function(count, lenght) {
+    var _createText = function(count, length) {
         
-          var wordIndex = this.randomInt(0, this.Words.length - count - 1);
+          var wordIndex = _randomInt(0, Words.length - count - 1);
+          var newWord = Words.slice(wordIndex, wordIndex + count).join(' ').replace(/[\.\,]/g,'');
 
-          return this.Words.slice(wordIndex, wordIndex + count).join(' ').replace(/[\.\,]/g,'');
+         while (length - newWord.length > 0){
+            newWord = _addWord(newWord  );
+        }
+        return newWord;
+    
+          
         
-    };
+    }
+
+    var _addWord = function(string) {
+          
+          var wordIndex = _randomInt(0, Words.length - 1);
+          return string + " " +  Words[wordIndex];
+    }
 
 
 
@@ -297,12 +312,14 @@
                         if(this.nodeValue.trim() != '')
                         {
                             _logger(this,"-- " + this.nodeValue.trim() + '--');
-                            var numberOfWords = _countWords(this.nodeValue.trim());
-                            var newText = _createText(newText,numberOfWords);
-                            _logger("oldText " + this.nodeValue.trim());
-                            _logger("numberOfWords " + numberOfWords);
-                            _logger("newText " + newText);
-                            _logger("----------------------- " );
+
+                            if (__this.options.maskText)
+                            {
+                                var numberOfWords = _countWords(this.nodeValue.trim());
+                                var newText = _createText(numberOfWords,this.nodeValue.trim().length);
+                                
+                                this.nodeValue = newText;
+                            }
                             var color = $( this ).parent().css( {"background-color" : "#ccc"} );
                             _logger(this,color);
                             return this
@@ -517,4 +534,4 @@
             console.info('Method ' + options + ' does not exist on jQuery.' + Name);
         }
     };
-})( jQuery, window, document );
+})( jQuery, window, document )
