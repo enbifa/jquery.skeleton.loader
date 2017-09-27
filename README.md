@@ -193,6 +193,12 @@ Currently this plugin supports the following options:
   - Acceptable-Values: Boolean
   - Function: If you need to mask an element's text, especially when incache is true
 
+  #### skelParentText
+
+  - Default: true 
+  - Acceptable-Values: Boolean
+  - Function: By default the main element of all text type nodes (nodetype = 3) is sketched (with background = #ccc). If you want to avoid it, and in some cases it is necessary, just make the valure to false.
+
 
 Example with options:
 

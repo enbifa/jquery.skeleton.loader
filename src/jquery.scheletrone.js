@@ -1,8 +1,8 @@
-
 /*
- *  jQuery screen skeleton - scheletrone - v0.0.1
+ *  jQuery screen skeleton - scheletrone - v1.0.5
  *  A jQuery plugin to make a skeleton loading of your html elements.
  *
+ *  GitHub: https://github.com/enbifa/jquery.skeleton.loader
  *  Copyright (c) 2017 - Vincenzo Bifano
  */
 
@@ -36,6 +36,7 @@
                 latency: 0
             },
             maskText: false,
+            skelParentText: true,
             removeIframe: false,
             backgroundImage: true,
             replaceImageWith: '',
@@ -320,8 +321,11 @@
                                 
                                 this.nodeValue = newText;
                             }
-                            var color = $( this ).parent().css( {"background-color" : "#ccc"} );
-                            _logger(this,color);
+                            if (__this.options.skelParentText)
+                            {
+                               var color = $( this ).parent().css( {"background-color" : "#ccc"} );
+                             _logger(this,color);
+                            }
                             return this
                         }
                         else
@@ -534,4 +538,4 @@
             console.info('Method ' + options + ' does not exist on jQuery.' + Name);
         }
     };
-})( jQuery, window, document )
+})( jQuery, window, document );

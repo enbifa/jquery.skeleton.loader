@@ -1,6 +1,6 @@
 {
   "name": "jquery.skeleton.loader",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Lo scheletrone is a a jQuery plugin to make screen skeleton loader....magically!",
   "main": "dist/jquery.scheletrone.js",
   "files": [
@@ -14,7 +14,8 @@
   ],
   "directories": {},
   "dependencies": {
-    "jquery": "2 - 3"
+    "jquery": "2 - 3",
+    "jsdoc": "^3.5.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -30,7 +31,7 @@
     "skeleton",
     "skeleton screens"
   ],
-    "author": {
+  "author": {
     "name": "Vincenzo Bifano",
     "email": "enbifaforfun@gmail.com"
   },
