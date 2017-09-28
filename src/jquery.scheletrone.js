@@ -1,5 +1,5 @@
 /*
- *  jQuery screen skeleton - scheletrone - v1.0.5
+ *  jQuery screen skeleton - scheletrone - v1.0.6
  *  A jQuery plugin to make a skeleton loading of your html elements.
  *
  *  GitHub: https://github.com/enbifa/jquery.skeleton.loader
@@ -9,7 +9,9 @@
 
 ;(function ( $, window, document ) {
 'use strict';
+
     var debugLog = false;
+    var IdElement = "";
     var Name = 'scheletrone';
     var ReplaceText;
     var Words = [
@@ -77,6 +79,8 @@
      */
 
     var Scheletrone  = function(element, options) {
+        
+        IdElement = $(element).attr('id');
 
         // This is the plugin's constructor
         // It is instantiated for each matched DOM element
@@ -446,7 +450,11 @@
             // Cache data
            
             if ( window.localStorage ) {
-                window.localStorage.setItem( "div-skeleton:" ,  result_data  );
+                var url = window.location.pathname;
+                var filename = url.substring(url.lastIndexOf('/')+1);
+
+
+                window.localStorage.setItem( filename + "-" + "div-"+IdElement+"-skeleton:" ,  result_data  );
             }
         },
         /**
@@ -457,8 +465,9 @@
         getCache : function() {
 
             if ( window.localStorage ) {
-                
-                return window.localStorage.getItem( "div-skeleton:");
+                var url = window.location.pathname;
+                var filename = url.substring(url.lastIndexOf('/')+1);
+                return window.localStorage.getItem( filename + "-" + "div-"+IdElement+"-skeleton:" );
             }
             else {
                 return false;
