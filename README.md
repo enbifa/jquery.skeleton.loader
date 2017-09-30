@@ -195,7 +195,7 @@ Currently this plugin supports the following options:
 
   #### skelParentText
 
-  - Default: true 
+  - Default: false 
   - Acceptable-Values: Boolean
   - Function: By default the main element of all text type nodes (nodetype = 3) is sketched (with background = #ccc). If you want to avoid it, and in some cases it is necessary, just make the valure to false.
 
@@ -212,11 +212,12 @@ var instance = $('#myDIV').scheletrone({
             },
             removeIframe: true,
             maskText: true,
+            skelParentText: false,
             backgroundImage: true,
             replaceImageWith: 'bg-image',
             incache : false,
             onComplete     : function() {
-                _logger('default onComplete() event');
+                console.log('default onComplete() event');
             }
 });
 ```
@@ -255,3 +256,37 @@ The important thing to do is to include an attribute "data-scheletrone" on the i
 </div>
 ```
 
+If you are creating a new page and want to give the skeleton screen effects, you have just create the template on the page and leave the work dirty to the Scheletrone.
+
+```html
+<div class="container" id="myDIV">
+    <img class="avatar" src="http://lorempicsum.com/up/255/200/2">
+    <div class="content">
+        <h1 class="firstName">
+            <span>Up</span>
+        </h1>
+        <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consectetur metus in nibh porttitor ultricies. Vestibulum placerat blandit interdum.
+        </div>
+    </div>
+</div>
+```
+and
+
+```javascript
+var instance = $('#myDIV').scheletrone({
+            url         : 'http://url/to/file',
+            ajaxData    : {},
+});
+```
+
+if you want to manipulate the data received via ajax or simply make the call use the onComplete callback function.
+
+```javascript
+var instance = $('#myDIV').scheletrone({
+                    incache: true,
+                    onComplete: function() {
+                        //here you can insert the code to populate the div
+                        
+                    }
+            });
+```

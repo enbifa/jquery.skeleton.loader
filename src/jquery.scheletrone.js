@@ -38,7 +38,7 @@
                 latency: 0
             },
             maskText: false,
-            skelParentText: true,
+            skelParentText: false,
             removeIframe: false,
             backgroundImage: true,
             replaceImageWith: '',

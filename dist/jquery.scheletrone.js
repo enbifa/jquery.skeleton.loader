@@ -38,7 +38,7 @@
                 latency: 0
             },
             maskText: false,
-            skelParentText: true,
+            skelParentText: false,
             removeIframe: false,
             backgroundImage: true,
             replaceImageWith: '',
@@ -500,6 +500,7 @@
         // call Plugin.init()
         if ( typeof options === 'undefined' || typeof options === 'object' ) {
             return this.each(function () {
+
                 // prevent multiple instantiations
                 if ( !$.data(this, dataPlugin )) {
                     $.data(
