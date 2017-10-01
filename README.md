@@ -3,7 +3,15 @@
 > A jQuery plugin to make screen skeleton loader.<br>
 > <b>Attention: skeleton is not a tool to automatically create wireframe ... at least not yet :)</b>
 
-## Browser Support
+## Contents
+- [Browser Support](#browser-Support)
+- [Getting started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Options](#options)
+- [When using lo scheletrone](#when-using-lo-scheletrone)
+
+### Browser Support
 
 We do care about it.
 
@@ -11,12 +19,8 @@ We do care about it.
 --- | --- | --- | --- | --- |
 IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
-## Contents
-[Options](#Options)
-[When using lo scheletrone](#When-using-lo-scheletrone)
 
-
-## Getting started
+### Getting started
 
 See jquery.skeleton.loader plugin in action [DEMO](https://rawgit.com/enbifa/jquery.skeleton.loader/master/example/index.html):
 
@@ -25,7 +29,7 @@ Two quick start options are available:
 * [Download latest release](https://github.com/enbifa/jquery.skeleton.loader/releases)
 * Clone the repo: `git@github.com:jquery.skeleton.loader.git`
 
-## Installation
+### Installation
 
 Include the script (unless you are packaging scripts somehow else):
 
@@ -37,7 +41,7 @@ Include the script (unless you are packaging scripts somehow else):
 **Do not include the script directly from GitHub (http://raw.github.com/...).** The file is being served as text/plain and as such being blocked
 in Internet Explorer on Windows 7 for instance (because of the wrong MIME type). Bottom line: GitHub is not a CDN.
 
-## Usage
+### Usage
 
 <p><img src="skeleton.gif" alt="skeleton gif" style="max-width:100%;"></p>
 
