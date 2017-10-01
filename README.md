@@ -11,6 +11,9 @@ We do care about it.
 --- | --- | --- | --- | --- |
 IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
+[When using lo scheletrone](#When using lo scheletrone)
+
+
 ## Getting started
 
 See jquery.skeleton.loader plugin in action [DEMO](https://rawgit.com/enbifa/jquery.skeleton.loader/master/example/index.html):
@@ -221,7 +224,7 @@ var instance = $('#myDIV').scheletrone({
             }
 });
 ```
-
+#When-using-lo-scheletrone
 ## When using lo scheletrone
 
 There are several cases where it is useful to use this plugin. The first is when you have a div populated asynchronous and the data waiting is very slow. The effect you have is an empty block awaiting the data like this. 
