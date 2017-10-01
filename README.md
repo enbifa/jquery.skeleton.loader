@@ -3,6 +3,11 @@
 > A jQuery plugin to make screen skeleton loader.<br>
 > <b>Attention: skeleton is not a tool to automatically create wireframe ... at least not yet :)</b>
 
+
+<em>In 2013, <a href="http://www.lukew.com/ff/entry.asp?1797" target="_new">Luke Wroblewski</a> first discussed the drawbacks of using loading spinners in on-screen experiences, and spoke in favour of what he called “skeleton screens.”
+The concept behind skeleton screens is the use of empty pages that are progressively populated with content as it becomes available — immutable regions of a page are rendered instantly on load, appearing as neutral color blocks, and are gradually replaced with content such as images, headings, and interface labels. (from <a href="https://medium.com/mobify-design-team/designing-for-the-appearance-of-speed-aaabc7f568c2" target="_new">this</a> very good article)</em>
+The goal of "lo scheletron" is to help those who want to include skeleton screens on their site, existing or new.
+
 ## Contents
 - [Browser Support](#browser-Support)
 - [Getting started](#getting-started)
