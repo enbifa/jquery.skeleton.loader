@@ -11,6 +11,7 @@ We do care about it.
 --- | --- | --- | --- | --- |
 IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
+## Contents
 [Options](#Options)
 [When using lo scheletrone](#When-using-lo-scheletrone)
 
