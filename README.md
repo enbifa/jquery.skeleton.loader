@@ -5,11 +5,11 @@
 
 ## Contents
 - [Browser Support](#browser-Support)
-- [When using lo scheletrone](#when-using-lo-scheletrone)
 - [Getting started](#getting-started)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Options](#options)
+- [When using lo scheletrone](#when-using-lo-scheletrone)
 
 
 ### Browser Support
@@ -20,75 +20,6 @@ We do care about it.
 --- | --- | --- | --- | --- |
 IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
-
-### When using lo scheletrone
-
-There are several cases where it is useful to use this plugin. The first is when you have a div populated asynchronous and the data waiting is very slow. The effect you have is an empty block awaiting the data like this. 
-
-<p><img src="withoutdata.gif" alt="skeleton gif" style="max-width:100%;"></p>
-
-
-in this case you can use this code:
-
-```javascript
-var instance = $('#myDIV').scheletrone({
-                    incache: true,
-                    onComplete: function() {
-                        //here you can insert the code to populate the div
-                        
-                    }
-            });
-```
-
-The important thing to do is to include an attribute "data-scheletrone" on the items to be cached like this:
-
-```html
-<div class="container2" data-scheletrone="true">
-    <img class="avatar" src="http://lorempicsum.com/up/255/200/2">
-    <div class="content">
-        <h1 class="firstName">
-            <span>Up</span>
-        </h1>
-        <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consectetur metus in nibh porttitor ultricies. Vestibulum placerat blandit interdum.
-        </div>
-    </div>
-</div>
-```
-
-If you are creating a new page and want to give the skeleton screen effects, you have just create the template on the page and leave the work dirty to the Scheletrone.
-
-```html
-<div class="container" id="myDIV">
-    <img class="avatar" src="http://lorempicsum.com/up/255/200/2">
-    <div class="content">
-        <h1 class="firstName">
-            <span>Up</span>
-        </h1>
-        <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consectetur metus in nibh porttitor ultricies. Vestibulum placerat blandit interdum.
-        </div>
-    </div>
-</div>
-```
-and
-
-```javascript
-var instance = $('#myDIV').scheletrone({
-            url         : 'http://url/to/file',
-            ajaxData    : {},
-});
-```
-
-if you want to manipulate the data received via ajax or simply make the call use the onComplete callback function.
-
-```javascript
-var instance = $('#myDIV').scheletrone({
-                    incache: true,
-                    onComplete: function() {
-                        //here you can insert the code to populate the div
-                        
-                    }
-            });
-```
 
 
 ### Getting started
@@ -300,4 +231,72 @@ var instance = $('#myDIV').scheletrone({
                 console.log('default onComplete() event');
             }
 });
+```
+### When using lo scheletrone
+
+There are several cases where it is useful to use this plugin. The first is when you have a div populated asynchronous and the data waiting is very slow. The effect you have is an empty block awaiting the data like this. 
+
+<p><img src="withoutdata.gif" alt="skeleton gif" style="max-width:100%;"></p>
+
+
+in this case you can use this code:
+
+```javascript
+var instance = $('#myDIV').scheletrone({
+                    incache: true,
+                    onComplete: function() {
+                        //here you can insert the code to populate the div
+                        
+                    }
+            });
+```
+
+The important thing to do is to include an attribute "data-scheletrone" on the items to be cached like this:
+
+```html
+<div class="container2" data-scheletrone="true">
+    <img class="avatar" src="http://lorempicsum.com/up/255/200/2">
+    <div class="content">
+        <h1 class="firstName">
+            <span>Up</span>
+        </h1>
+        <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consectetur metus in nibh porttitor ultricies. Vestibulum placerat blandit interdum.
+        </div>
+    </div>
+</div>
+```
+
+If you are creating a new page and want to give the skeleton screen effects, you have just create the template on the page and leave the work dirty to the Scheletrone.
+
+```html
+<div class="container" id="myDIV">
+    <img class="avatar" src="http://lorempicsum.com/up/255/200/2">
+    <div class="content">
+        <h1 class="firstName">
+            <span>Up</span>
+        </h1>
+        <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consectetur metus in nibh porttitor ultricies. Vestibulum placerat blandit interdum.
+        </div>
+    </div>
+</div>
+```
+and
+
+```javascript
+var instance = $('#myDIV').scheletrone({
+            url         : 'http://url/to/file',
+            ajaxData    : {},
+});
+```
+
+if you want to manipulate the data received via ajax or simply make the call use the onComplete callback function.
+
+```javascript
+var instance = $('#myDIV').scheletrone({
+                    incache: true,
+                    onComplete: function() {
+                        //here you can insert the code to populate the div
+                        
+                    }
+            });
 ```
