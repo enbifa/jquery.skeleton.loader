@@ -11,6 +11,7 @@ We do care about it.
 --- | --- | --- | --- | --- |
 IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
+[Options](#Options)
 [When using lo scheletrone](#When-using-lo-scheletrone)
 
 
@@ -129,7 +130,7 @@ var instancecached = $('#myDIVcached').scheletrone({
   incache: true
 });
 ```
-## Options
+### Options
 
 Currently this plugin supports the following options:
 
@@ -225,7 +226,7 @@ var instance = $('#myDIV').scheletrone({
 });
 ```
 
-## When using lo scheletrone
+### When using lo scheletrone
 
 There are several cases where it is useful to use this plugin. The first is when you have a div populated asynchronous and the data waiting is very slow. The effect you have is an empty block awaiting the data like this. 
 
