@@ -442,6 +442,16 @@
 
         },
         /**
+         *  Stop loading on div - pass it on construction
+         *
+         * @example this.stopLoader();
+         */
+        stopLoader: function () {
+            var obj = this;
+            $(obj.element).html('');
+            
+        },
+        /**
          *  Store the asynchronus data in localstorage
          *
          *  @example this.setCache(data);

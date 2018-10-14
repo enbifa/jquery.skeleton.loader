@@ -142,6 +142,12 @@ var instancecached = $('#myDIVcached').scheletrone({
   incache: true
 });
 ```
+to stop the loader use the public method stopLoader in this way:
+
+```javascript
+var instance = $('#myDIV').scheletrone('stopLoader');
+```
+
 ### Options
 
 Currently this plugin supports the following options:
