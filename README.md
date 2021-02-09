@@ -113,7 +113,7 @@ It is possible to instantiate several times the plugin [DEMO](https://rawgit.com
 
 <div id="myDIV">
 
-            <img class="avatar" src="http://picsum.photos/up/255/200/2">
+            <img class="avatar" src="http://picsum.photos/id/237/255/200/">
             <div class="content">
                 <h1 class="firstName">
                     <span>UP</span>
@@ -270,7 +270,7 @@ The important thing to do is to include an attribute "data-scheletrone" on the i
 
 ```html
 <div class="container2" data-scheletrone="true">
-    <img class="avatar" src="http://picsum.photos/up/255/200/2">
+    <img class="avatar" src="http://picsum.photos/id/237/255/200/">
     <div class="content">
         <h1 class="firstName">
             <span>Up</span>
@@ -285,7 +285,7 @@ If you are creating a new page and want to give the skeleton screen effects, you
 
 ```html
 <div class="container" id="myDIV">
-    <img class="avatar" src="http://picsum.photos/up/255/200/2">
+    <img class="avatar" src="http://picsum.photos/id/237/255/200/">
     <div class="content">
         <h1 class="firstName">
             <span>Up</span>
