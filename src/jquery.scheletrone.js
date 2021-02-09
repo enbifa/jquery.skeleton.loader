@@ -88,6 +88,7 @@
           }
         };
       }
+      
 
     var Scheletrone  = function(element, options) {
         
