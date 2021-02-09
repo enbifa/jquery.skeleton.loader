@@ -33,7 +33,7 @@ IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 ### Getting started
 
-See jquery.skeleton.loader plugin in action [DEMO](https://rawgit.com/enbifa/jquery.skeleton.loader/master/example/index.html) or here in in this pen [CODEPEN](https://goo.gl/iT696Y):
+See jquery.skeleton.loader plugin in action [DEMO](https://enbifa.github.io/jquery.skeleton.loader/example/index.html) or here in in this pen [CODEPEN](https://goo.gl/iT696Y):
 
 Two quick start options are available:
 
