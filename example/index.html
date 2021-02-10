@@ -121,13 +121,10 @@
 <br>
 <br>
 <br>
-      <h1>Cartoons</h1>
-     <div class="row-fluid" id="skeletone2">
-
-
-
-       
-      </div>
+      <h1>Photographers</h1>
+     <div class="row-fluid" id="skeletone2"></div>
+     <h1>Photographer (with selector option)</h1>
+     <div class="row-fluid" id="skeletone3"></div>
 
       <hr>
 
@@ -162,7 +159,12 @@
                         console.info('wait 3 secs for the data');
                     }
             });
-            
+            var instance = $('#skeletone3').scheletrone({
+                    url   : "index3.html",
+                   
+                    incache: true,
+                    selector: '#containerSingle'
+            });
             
         });
     </script>

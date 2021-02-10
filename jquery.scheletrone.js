@@ -1,16 +1,18 @@
-
 /*
- *  jQuery screen skeleton - scheletrone - v0.0.1
+ *  jQuery screen skeleton - scheletrone - v1.0.6
  *  A jQuery plugin to make a skeleton loading of your html elements.
  *
+ *  GitHub: https://github.com/enbifa/jquery.skeleton.loader
  *  Copyright (c) 2017 - Vincenzo Bifano
  */
 
 
 ;(function ( $, window, document ) {
 'use strict';
+
     var debugLog = false;
-    var Name = 'scheletrone',
+    var IdElement = "";
+    var Name = 'scheletrone';
     var ReplaceText;
     var Words = [
         "lorem", "ipsum", "dolor", "sit", "amet,", "consectetur", "adipiscing", "elit", "ut", "aliquam,", "purus", "sit", "amet", "luctus", "venenatis,", "lectus", "magna", "fringilla", "urna,", "porttitor", "rhoncus", "dolor", "purus", "non", "enim", "praesent", "elementum", "facilisis", "leo,", "vel", "fringilla", "est", "ullamcorper", "eget", "nulla", "facilisi", "etiam", "dignissim", "diam", "quis", "enim", "lobortis", "scelerisque", "fermentum", "dui", "faucibus", "in", "ornare", "quam", "viverra", "orci", "sagittis", "eu", "volutpat", "odio", "facilisis", "mauris", "sit", "amet", "massa", "vitae", "tortor", "condimentum", "lacinia", "quis", "vel", "eros", "donec", "ac", "odio", "tempor", "orci", "dapibus", "ultrices", "in", "iaculis", "nunc", "sed", "augue", "lacus,", "viverra", "vitae", "congue", "eu,", "consequat", "ac", "felis", "donec", "et", "odio", "pellentesque", "diam", "volutpat", "commodo", "sed", "egestas", "egestas", "fringilla", "phasellus", "faucibus", "scelerisque", "eleifend", "donec", "pretium", "vulputate", "sapien", "nec", "sagittis", "aliquam", "malesuada", "bibendum", "arcu", "vitae", "elementum",
@@ -25,7 +27,7 @@
         "nullam", "vehicula", "ipsum", "a", "arcu", "cursus", "vitae", "congue", "mauris", "rhoncus", "aenean", "vel", "elit", "scelerisque", "mauris", "pellentesque", "pulvinar", "pellentesque", "habitant", "morbi", "tristique", "senectus", "et", "netus", "et", "malesuada", "fames", "ac", "turpis", "egestas", "maecenas", "pharetra", "convallis", "posuere", "morbi", "leo", "urna,", "molestie", "at", "elementum", "eu,", "facilisis", "sed", "odio", "morbi", "quis", "commodo", "odio", "aenean", "sed", "adipiscing", "diam", "donec", "adipiscing", "tristique", "risus", "nec", "feugiat", "in", "fermentum", "posuere", "urna", "nec", "tincidunt", "praesent", "semper", "feugiat", "nibh", "sed", "pulvinar", "proin", "gravida", "hendrerit", "lectus", "a", "molestie"
     ];
         
-        dataPlugin = 'plugin_' + Name,
+    var  dataPlugin = 'plugin_' + Name,
 
             // default options, used for instantion, if not explicitly set
             defaults = {
@@ -35,9 +37,12 @@
                 log: false,
                 latency: 0
             },
+            maskText: false,
+            skelParentText: false,
             removeIframe: false,
             backgroundImage: true,
             replaceImageWith: '',
+            selector: '',
             incache : false,
             onComplete     : function() {
                 _logger('default onComplete() event');
@@ -74,7 +79,11 @@
 
      */
 
+
+
     var Scheletrone  = function(element, options) {
+        
+        IdElement = $(element).attr('id');
 
         // This is the plugin's constructor
         // It is instantiated for each matched DOM element
@@ -122,13 +131,14 @@
     var _logger = function (message) {
              
              if (debugLog)
+             {
                console.log(message);
+             }
     }
-
 
     var _replaceBackgroundImage = function (replaceImageWith,element)
     {
-        
+        _logger("*** _replaceBackgroundImage ***");
         var bgimage_url = $( element ).css('background-image');
         
         // ^ Either "none" or url("...urlhere..")
@@ -142,12 +152,16 @@
         bg_url = bg_url ? bg_url[2] : ""; // If matched, retrieve url, otherwise ""
             
 
-        console.log(this);
+        
+
+  
+
         if ((bgimage_url != '') || (bg_url != '') ) {
           
             $( element ).replaceWith("<div class='pending_el "+replaceImageWith+"' style='width:"+$( element ).width()+"px;height:"+$( element ).height()+"px;'></div>")
         
         }
+        _logger("*** End _replaceBackgroundImage ***");
     }
 
     var _getAllStyles = function (elem) {
@@ -212,6 +226,8 @@
                 }
             }
          });
+        
+         _logger("*** Cache Data ***");
          _logger(div.innerHTML);
          return div.innerHTML;
     }
@@ -225,7 +241,7 @@
      */
     var _randomInt = function (min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
+    }
 
     /**
      *  Count number of words in a text
@@ -250,14 +266,25 @@
      *  @return  {string}
      */
     //text creator method with parameters: how many, what
-    var _createText = function(count, lenght) {
+    var _createText = function(count, length) {
         
-          var wordIndex = this.randomInt(0, this.Words.length - count - 1);
+          var wordIndex = _randomInt(0, Words.length - count - 1);
+          var newWord = Words.slice(wordIndex, wordIndex + count).join(' ').replace(/[\.\,]/g,'');
 
-          return this.Words.slice(wordIndex, wordIndex + count).join(' ').replace(/[\.\,]/g,'');
+         while (length - newWord.length > 0){
+            newWord = _addWord(newWord  );
+        }
+        return newWord;
+    
+          
         
-    };
+    }
 
+    var _addWord = function(string) {
+          
+          var wordIndex = _randomInt(0, Words.length - 1);
+          return string + " " +  Words[wordIndex];
+    }
 
 
 
@@ -280,10 +307,8 @@
             _logger(this);
             // iterate all children in element to make a skeleton
             
-            if(this.options.removeIframe){
+            if(this.options.removeIframe)
                 jQuery('html').find('iframe').remove();
-                
-            }
 
 
             if (this.options.incache)
@@ -311,20 +336,25 @@
                         if(this.nodeValue.trim() != '')
                         {
                             _logger(this,"-- " + this.nodeValue.trim() + '--');
-                            var numberOfWords = _countWords(this.nodeValue.trim());
-                            var newText = _createText(newText,numberOfWords);
-                            _logger("oldText " + this.nodeValue.trim());
-                            _logger("numberOfWords " + numberOfWords);
-                            _logger("newText " + newText);
-                            _logger("----------------------- " );
-                            var color = $( this ).parent().css( {"background-color" : "#ccc"} );
-                            _logger(this,color);
+
+                            if (__this.options.maskText)
+                            {
+                                var numberOfWords = _countWords(this.nodeValue.trim());
+                                var newText = _createText(numberOfWords,this.nodeValue.trim().length);
+                                
+                                this.nodeValue = newText;
+                            }
+                            if (__this.options.skelParentText)
+                            {
+                               var color = $( this ).parent().css( {"background-color" : "#ccc"} );
+                             _logger(this,color);
+                            }
                             return this
                         }
                         else
                         {
                             this.remove();
-                            //IE11 compatibility issue #2
+                              //IE11 compatibility issue #2
                             //A small Element.remove() polyfill for IE 
                             //https://stackoverflow.com/questions/20428877/javascript-remove-doesnt-work-in-ie
                             //
@@ -402,11 +432,11 @@
         },
         retrieveData: function () {
         var obj = this;
-        
+ 
        
-            if (this.options.debug.latency > 0)
-            {
-              
+                if (this.options.debug.latency > 0)
+                {
+                    
                 setTimeout(function(){
                  
                             $.ajax({
@@ -416,7 +446,26 @@
                                 success: function(data) {
                                     
                                     _logger(obj.options.debug.log,"obj.element " + obj.element);
-                                        $( obj.element ).html('').append((data));
+                                   
+                                      
+                                        if (obj.options.selector != '')
+                                        {
+                                            var parsedResponse = $.parseHTML(data);
+                                      
+                                            var result = $(parsedResponse).filter(obj.options.selector);
+                                            _logger("*** Selector *** ");
+                                            _logger(obj.options.selector);
+                                            _logger(result.html());
+                                            _logger("*** End Selector *** ");
+                                            $( obj.element ).html('').append((result));
+                                        }
+                                        else
+                                        {
+                                            $( obj.element ).html('').append((data));
+                                        }
+
+
+
                                         if (obj.options.incache)
                                         {
                                             _logger(obj.options.debug.log,'setcache');
@@ -428,18 +477,46 @@
                     }, obj.options.debug.latency);
                 }
                 else{
+                    
                     $.ajax({
                                 url: obj.options.url,
                                 dataType: "html",
                                 data: obj.options.ajaxData,
                                 success: function(data) {
-                                  
+                                    
                                     _logger(obj.options.debug.log,obj);
-                                        obj.element.html('').append((data));
+                                  
+                                    if (obj.options.selector != '')
+                                    {
+                                        //Populate with only a specific content Issue #4
+                                        var parsedResponse = $.parseHTML(data);
+                                        var result = $(parsedResponse).filter(obj.options.selector);
+                                        _logger("*** Selector *** ");
+                                        _logger(obj.options.selector);
+                                        _logger(result.html());
+                                        _logger("*** End Selector *** ");
+                                        $( obj.element ).html('').append((result));
+                                    }
+                                    else
+                                    {
+                                        $( obj.element ).html('').append((data));
+                                    }
+
+
                                 }
                             });
                 }
 
+        },
+        /**
+         *  Stop loading on div - pass it on construction
+         *
+         * @example this.stopLoader();
+         */
+        stopLoader: function () {
+            var obj = this;
+            $(obj.element).html('');
+            
         },
         /**
          *  Store the asynchronus data in localstorage
@@ -450,7 +527,11 @@
             // Cache data
            
             if ( window.localStorage ) {
-                window.localStorage.setItem( "div-skeleton:" ,  result_data  );
+                var url = window.location.pathname;
+                var filename = url.substring(url.lastIndexOf('/')+1);
+
+
+                window.localStorage.setItem( filename + "-" + "div-"+IdElement+"-skeleton:" ,  result_data  );
             }
         },
         /**
@@ -461,8 +542,9 @@
         getCache : function() {
 
             if ( window.localStorage ) {
-                
-                return window.localStorage.getItem( "div-skeleton:");
+                var url = window.location.pathname;
+                var filename = url.substring(url.lastIndexOf('/')+1);
+                return window.localStorage.getItem( filename + "-" + "div-"+IdElement+"-skeleton:" );
             }
             else {
                 return false;

@@ -42,6 +42,7 @@
             removeIframe: false,
             backgroundImage: true,
             replaceImageWith: '',
+            selector: '',
             incache : false,
             onComplete     : function() {
                 _logger('default onComplete() event');
@@ -78,7 +79,7 @@
 
      */
 
-         
+
 
     var Scheletrone  = function(element, options) {
         
@@ -137,7 +138,7 @@
 
     var _replaceBackgroundImage = function (replaceImageWith,element)
     {
-        
+        _logger("*** _replaceBackgroundImage ***");
         var bgimage_url = $( element ).css('background-image');
         
         // ^ Either "none" or url("...urlhere..")
@@ -151,12 +152,16 @@
         bg_url = bg_url ? bg_url[2] : ""; // If matched, retrieve url, otherwise ""
             
 
-        console.log(this);
+        
+
+  
+
         if ((bgimage_url != '') || (bg_url != '') ) {
           
             $( element ).replaceWith("<div class='pending_el "+replaceImageWith+"' style='width:"+$( element ).width()+"px;height:"+$( element ).height()+"px;'></div>")
         
         }
+        _logger("*** End _replaceBackgroundImage ***");
     }
 
     var _getAllStyles = function (elem) {
@@ -222,7 +227,8 @@
             }
          });
         
-         console.log(div.innerHTML);
+         _logger("*** Cache Data ***");
+         _logger(div.innerHTML);
          return div.innerHTML;
     }
 
@@ -348,7 +354,7 @@
                         else
                         {
                             this.remove();
-                            //IE11 compatibility issue #2
+                              //IE11 compatibility issue #2
                             //A small Element.remove() polyfill for IE 
                             //https://stackoverflow.com/questions/20428877/javascript-remove-doesnt-work-in-ie
                             //
@@ -426,11 +432,11 @@
         },
         retrieveData: function () {
         var obj = this;
-        
+ 
        
-            if (this.options.debug.latency > 0)
-            {
-              
+                if (this.options.debug.latency > 0)
+                {
+                    
                 setTimeout(function(){
                  
                             $.ajax({
@@ -440,7 +446,26 @@
                                 success: function(data) {
                                     
                                     _logger(obj.options.debug.log,"obj.element " + obj.element);
-                                        $( obj.element ).html('').append((data));
+                                   
+                                      
+                                        if (obj.options.selector != '')
+                                        {
+                                            var parsedResponse = $.parseHTML(data);
+                                      
+                                            var result = $(parsedResponse).filter(obj.options.selector);
+                                            _logger("*** Selector *** ");
+                                            _logger(obj.options.selector);
+                                            _logger(result.html());
+                                            _logger("*** End Selector *** ");
+                                            $( obj.element ).html('').append((result));
+                                        }
+                                        else
+                                        {
+                                            $( obj.element ).html('').append((data));
+                                        }
+
+
+
                                         if (obj.options.incache)
                                         {
                                             _logger(obj.options.debug.log,'setcache');
@@ -452,14 +477,32 @@
                     }, obj.options.debug.latency);
                 }
                 else{
+                    
                     $.ajax({
                                 url: obj.options.url,
                                 dataType: "html",
                                 data: obj.options.ajaxData,
                                 success: function(data) {
-                                  
+                                    
                                     _logger(obj.options.debug.log,obj);
-                                        obj.element.html('').append((data));
+                                  
+                                    if (obj.options.selector != '')
+                                    {
+                                        //Populate with only a specific content Issue #4
+                                        var parsedResponse = $.parseHTML(data);
+                                        var result = $(parsedResponse).filter(obj.options.selector);
+                                        _logger("*** Selector *** ");
+                                        _logger(obj.options.selector);
+                                        _logger(result.html());
+                                        _logger("*** End Selector *** ");
+                                        $( obj.element ).html('').append((result));
+                                    }
+                                    else
+                                    {
+                                        $( obj.element ).html('').append((data));
+                                    }
+
+
                                 }
                             });
                 }

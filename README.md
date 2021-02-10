@@ -180,13 +180,17 @@ Currently this plugin supports the following options:
  - Acceptable-Values: Integer
  - Function: The timeout that the plugin will have before injecting the data returned from the ajax call (in milliseconds)
 
-
   #### removeIframe
 
- - Default: false 
+ - Default: '' 
  - Acceptable-Values: Boolean
  - Function: Exclude the iframes of the page to be scanned (to avoid security issues)
 
+  #### selector
+
+ - Default: false 
+ - Acceptable-Values: String
+ - Function: If you want to retrieve only a specific content from a loaded page use this option with a selector expression. Please refer (https://api.jquery.com/filter/).
 
 
   #### backgroundImage
@@ -241,6 +245,7 @@ var instance = $('#myDIV').scheletrone({
             skelParentText: false,
             backgroundImage: true,
             replaceImageWith: 'bg-image',
+            selector: '#containerSingle',
             incache : false,
             onComplete     : function() {
                 console.log('default onComplete() event');
@@ -313,5 +318,15 @@ var instance = $('#myDIV').scheletrone({
                         //here you can insert the code to populate the div
                         
                     }
+            });
+```
+
+if you want to retrieve only a specific content from the loaded page you can pass the selector on the options.
+
+```javascript
+var instance = $('#skeletone3').scheletrone({
+                    url   : "index3.html",
+                    incache: true,
+                    selector: '#containerSingle'
             });
 ```
