@@ -199,6 +199,7 @@
             else
             {
                  $( this ).remove();
+                //IE11 compatibility issue #2
                 //A small Element.remove() polyfill for IE 
                 //https://stackoverflow.com/questions/20428877/javascript-remove-doesnt-work-in-ie
                 //
@@ -323,6 +324,7 @@
                         else
                         {
                             this.remove();
+                            //IE11 compatibility issue #2
                             //A small Element.remove() polyfill for IE 
                             //https://stackoverflow.com/questions/20428877/javascript-remove-doesnt-work-in-ie
                             //
