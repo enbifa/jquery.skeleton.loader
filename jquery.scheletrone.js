@@ -199,6 +199,16 @@
             else
             {
                  $( this ).remove();
+                //A small Element.remove() polyfill for IE 
+                //https://stackoverflow.com/questions/20428877/javascript-remove-doesnt-work-in-ie
+                //
+                if (!('remove' in Element.prototype)) {
+                    Element.prototype['remove'] = function () {
+                    if (this.parentNode) {
+                        this.parentNode.removeChild(this);
+                    }
+                    };
+                }
             }
          });
          _logger(div.innerHTML);
@@ -248,16 +258,6 @@
     };
 
 
-    //A small Element.remove() polyfill for IE 
-    //https://stackoverflow.com/questions/20428877/javascript-remove-doesnt-work-in-ie
-    //
-    if (!('remove' in Element.prototype)) {
-        Element.prototype['remove'] = function () {
-          if (this.parentNode) {
-            this.parentNode.removeChild(this);
-          }
-        };
-      }
 
 
     ////////////////////////////////////
@@ -279,8 +279,10 @@
             _logger(this);
             // iterate all children in element to make a skeleton
             
-            if(this.options.removeIframe)
+            if(this.options.removeIframe){
                 jQuery('html').find('iframe').remove();
+                
+            }
 
 
             if (this.options.incache)
@@ -321,6 +323,16 @@
                         else
                         {
                             this.remove();
+                            //A small Element.remove() polyfill for IE 
+                            //https://stackoverflow.com/questions/20428877/javascript-remove-doesnt-work-in-ie
+                            //
+                            if (!('remove' in Element.prototype)) {
+                                Element.prototype['remove'] = function () {
+                                if (this.parentNode) {
+                                    this.parentNode.removeChild(this);
+                                }
+                                };
+                            }
                         }
                             
                     })
