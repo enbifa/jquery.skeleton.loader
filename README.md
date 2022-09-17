@@ -330,3 +330,8 @@ var instance = $('#skeletone3').scheletrone({
                     selector: '#containerSingle'
             });
 ```
+
+## Cool things built with _lo scheletrone_
+
+Building something with lo scheletrone? Let me know or send a PR to create this list!
+
