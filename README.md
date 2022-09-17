@@ -331,6 +331,14 @@ var instance = $('#skeletone3').scheletrone({
             });
 ```
 
+## Stargazers
+
+[![Stargazers repo roster for @enbifa/jquery.skeleton.loader](https://reporoster.com/stars/enbifa/jquery.skeleton.loader)](https://github.com/enbifa/jquery.skeleton.loader/stargazers)
+
+## Forkers
+
+[![Forkers repo roster for @enbifa/jquery.skeleton.loader](https://reporoster.com/forks/enbifa/jquery.skeleton.loader)](https://github.com/enbifa/jquery.skeleton.loader/network/members)
+
 ## Cool things built with _lo scheletrone_
 
 Building something with lo scheletrone? Let me know or send a PR to create this list!
